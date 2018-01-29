@@ -1,0 +1,42 @@
+	
+<ion-header>
+  <ion-navbar>
+    <ion-title>Authorization Page</ion-title>
+  </ion-navbar>
+</ion-header>
+  
+  
+<ion-content padding>
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+        <ion-item [ngClass]="{'error-border':!authForm.controls.username.valid && authForm.controls.username.touched}">
+            <ion-label floating>Username</ion-label>
+            <ion-input formControlName="username" type="text"></ion-input>
+        </ion-item>
+  
+        <ion-item *ngIf="authForm.controls.username.hasError('required') && authForm.controls.username.touched">
+            <p>Sorry, field username is required!</p>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.username.hasError('pattern') && authForm.controls.username.touched">
+            <p>Sorry, only small and capital letters are allowed!</p>
+        </ion-item>        
+        <ion-item *ngIf="authForm.controls.username.hasError('minlength') && authForm.controls.username.touched">
+            <p>Sorry, minimum username length is 8!</p>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.username.hasError('maxlength') && authForm.controls.username.touched">
+            <p>Sorry, maximum username length is 30!</p>
+        </ion-item>
+  
+        <ion-item [ngClass]="{'error-border':!authForm.controls.description.valid && authForm.controls.description.touched}">
+            <ion-label floating>Description</ion-label>
+            <ion-input formControlName="description" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.description.hasError('required') && authForm.controls.description.touched">
+            <p>Sorry, field description is required!</p>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.description.hasError('minlength') && authForm.controls.description.touched">
+            <p>Sorry, minimum description length is 8!</p>
+        </ion-item>                
+  
+        <button ion-button full color="primary" [disabled]="!authForm.valid" style="margin-top: 20px;" type="submit">Authorize</button>        
+    </form>
+</ion-content>

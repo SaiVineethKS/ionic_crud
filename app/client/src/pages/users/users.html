@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
+    <ion-title>
+      Users
+    </ion-title>
+		 <ion-buttons end>
+       <button
+          ion-button
+          block
+          color="primary"
+          (click)="addRecord()">Add</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <h2>{{ user.name }}</h2>
+			<button item-right
+              ion-button
+              color="secondary"
+              (click)="editRecord(item)">Update</button>
+			<button  item-right
+              ion-button
+              color="danger"
+              (click)="updateRecord(item)">Delete</button>
+			<button item-right
+              ion-button
+              color="primary"
+              (click)="viewRecord(item)">View</button>
+      
+    </ion-item>
+  </ion-list>
+</ion-content>
